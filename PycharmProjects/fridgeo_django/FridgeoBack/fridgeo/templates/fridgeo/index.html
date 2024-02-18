@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Receipt</title>
+    <link type="text/css" href="{% static 'fridgeo/css/style.css' %}" rel='stylesheet'/>
+    <link type="text/css" href="{% static 'fridgeo/css/header.css' %}" rel='stylesheet'/>
+    <link type="text/css" href="{% static 'fridgeo/css/menu_button.css' %}" rel='stylesheet'/>
+    <link rel="icon" href="{% static 'fridgeo/images/1054109.png' %}" type="image/x-icon" />
+</head>
+<body>
+    <style >
+        #a{
+            white-space: nowrap;
+            font-size: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            color: black
+        }
+    </style>
+
+
+<!--    <button class="window-up"><img class="img-scrollup" src ="{% static 'fridgeo/images/icons8-вверх-50.png' %}"></button><script src="/scripts/window_up_script.js"></script>-->
+<!--    <div class="start">-->
+<!--        <span class="my_receipt"><p><a id="a" href="{% url 'startpage' %}">Мои рецепты</a></p></span>-->
+<!--        <div class="receipt_menu">-->
+<!--            {% for m in menu %}-->
+<!--                <p class="menu_text">-->
+<!--                    <a class="menu_text" href="{% url m.url_name %}">{{ m.title }}</a>-->
+<!--                </p>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    {% block content %}
+        <ul style=" margin-top: 100px;">
+            {% for r in receipt %}
+            {% if r.is_published %}
+            <li>
+                <h2>{{ r.title }}</h2>
+                <p>{{ r.content }}</p>
+                <p><a href = "{% url 'post' r.id %}">Читать рецепт</a></p>
+                <hr>
+            </li>
+            {% endif %}
+            {% endfor %}
+            <li>
+                <h2>Добавить рецепт</h2>
+                <p><a href="#">Добавить рецепт</a></p>
+            </li>
+        </ul>
+    {% endblock %}
+</body>
+</html>
